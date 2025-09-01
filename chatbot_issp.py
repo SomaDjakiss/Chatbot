@@ -4,7 +4,6 @@ import json
 import datetime
 from typing import Dict, List, Optional
 import uuid
-import pickle
 from pymongo import MongoClient
 import streamlit as st
 from langchain.prompts import PromptTemplate
@@ -271,14 +270,9 @@ def show_login_page(auth_manager):
                 else:
                     st.error("Veuillez saisir tous les champs obligatoires")
 
-# 🗃️ Chargement des données
-@st.cache_data(ttl=5184000)
-def load_data():
-    with open("df_finale12.pkl", "rb") as f:
-        df = pickle.load(f)
-    return df
-
-df_finale = load_data()
+# ✅ Chargement et cache des données
+df=pd.read_csv("https://raw.githubusercontent.com/SomaDjakiss/Projet_ChatBot_Kix_Seeds/main/data_kix_seeds.csv",encoding="ISO-8859-1",sep=";")
+df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 # ✅ Clé API OpenAI depuis secrets
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 
@@ -676,3 +670,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
