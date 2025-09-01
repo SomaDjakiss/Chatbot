@@ -6,15 +6,11 @@ from typing import Dict, List, Optional
 import uuid
 import pickle
 from pymongo import MongoClient
-#from datetime import datetime
 import streamlit as st
 from langchain.prompts import PromptTemplate
 from langchain.chat_models import ChatOpenAI
-#from langchain.schema import HumanMessage, AIMessage
 import pandas as pd
 import streamlit as st
-#from langchain.prompts import PromptTemplate
-#from langchain_ollama import ChatOllama
 from functools import reduce
 import operator
 from pymongo import MongoClient
@@ -31,7 +27,6 @@ st.set_page_config(page_title="🎓 Analyse Scolaire", layout="wide")
 def init_mongodb():
     try:
         # Remplacez par votre URI MongoDB (local ou Atlas)
-        #client = MongoClient("mongodb://localhost:27017/")
         client = MongoClient("mongodb://mongo:JiwSbeZEXWiILqHARYsOnvkCOenDSKoY@shuttle.proxy.rlwy.net:28806")
         db = client.chatbot_scolaire
         
@@ -284,19 +279,6 @@ def load_data():
     return df
 
 df_finale = load_data()
-#@st.cache_data(ttl=5184000)
-#def load_data():
-   # try:
-       # df = pd.read_csv("donnees_nettoyees.csv", sep=';', encoding='ISO-8859-1', low_memory=False)
-       # return df
-    #except FileNotFoundError:
-       # st.error("Fichier 'donnees_nettoyees.csv' non trouvé. Veuillez vérifier le chemin.")
-       # return pd.DataFrame()
-
-# 🔧 Initialisation du modèle
-#@st.cache_resource
-#def init_llm():
-    #return ChatOllama(model="gemma:2b", temperature=0.7)
 # ✅ Clé API OpenAI depuis secrets
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 
@@ -692,4 +674,5 @@ def main():
         st.write("• Consulter les statistiques d'une école")
 
 if __name__ == "__main__":
+
     main()
