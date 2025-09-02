@@ -274,7 +274,14 @@ def show_login_page(auth_manager):
 df=pd.read_csv("https://raw.githubusercontent.com/SomaDjakiss/Projet_ChatBot_Kix_Seeds/main/data_kix_seeds.csv",encoding="ISO-8859-1",sep=";")
 df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 # ✅ Clé API OpenAI depuis secrets
-openai_api_key = st.secrets["OPENAI_API_KEY"]
+#openai_api_key = st.secrets["OPENAI_API_KEY"]
+try:
+    openai_api_key = os.environ.get("OPENAI_API_KEY")
+    if not openai_api_key:
+        openai_api_key = st.secrets["OPENAI_API_KEY"]
+except:
+    st.error("❌ Clé API OpenAI introuvable")
+    st.stop()
 
 # ✅ Modèle GPT via LangChain
 llm = ChatOpenAI(
@@ -670,4 +677,5 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
