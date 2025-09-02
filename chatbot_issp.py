@@ -540,7 +540,8 @@ def main():
     
     # Initialisation des services
     memory = ChatbotMemory(db)
-    df_finale = load_data()
+    #df_finale = load_data()
+    df_finale = df
     
     if df_finale.empty:
         st.error("Aucune donnée disponible.")
@@ -678,6 +679,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
