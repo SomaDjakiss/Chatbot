@@ -271,7 +271,8 @@ def show_login_page(auth_manager):
                     st.error("Veuillez saisir tous les champs obligatoires")
 
 # ✅ Chargement et cache des données
-df=pd.read_csv("https://raw.githubusercontent.com/SomaDjakiss/Projet_ChatBot_Kix_Seeds/main/data_kix_seeds.csv",encoding="ISO-8859-1",sep=";")
+#df=pd.read_csv("https://raw.githubusercontent.com/SomaDjakiss/Projet_ChatBot_Kix_Seeds/main/data_kix_seeds.csv",encoding="ISO-8859-1",sep=";")
+df=pd.read_csv("https://raw.githubusercontent.com/SomaDjakiss/Projet_ChatBot_Kix_Seeds/main/data_issp.csv",encoding="ISO-8859-1",sep=";")
 df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
 df_finale = df
 # ✅ Clé API OpenAI depuis secrets
@@ -799,6 +800,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
